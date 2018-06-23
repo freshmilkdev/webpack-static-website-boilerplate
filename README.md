@@ -10,3 +10,6 @@
 `npm run dev` - development build, WDS will be opened in default browser at http://localhost:8080 by default.
 `npm run prod` - production build, outputs all needed stuff into /dist folder.
 
+#Notes
+index.html files for both development and production builds will be created from template located at `src/index.template.ejs`
+
