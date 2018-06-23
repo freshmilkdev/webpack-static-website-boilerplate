@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+//TODO: path for images in CSS
 module.exports = {
     //context: path.resolve(__dirname, "../"), // `__dirname` is root of project and `src` is source
     entry: path.resolve(__dirname, "../src"),
