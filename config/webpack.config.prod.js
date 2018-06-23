@@ -2,10 +2,11 @@ const path = require('path');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    entry: path.resolve(__dirname, "../src"),
+    entry: path.resolve(__dirname, "../src/js"),
     output: {
-        path: path.resolve(__dirname, '../dist/assets'),
+        path: path.resolve(__dirname, '../dist'),
         filename: 'bundle.min.js'
     },
     optimization: {
@@ -24,6 +25,11 @@ module.exports = {
             // both options are optional
             filename: "styles.min.css",
             chunkFilename: "[id].min.css"
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Webpack Production html',
+            template: path.resolve(__dirname, "../src/index.template.ejs"),
+            inject: 'body'
         })
     ],
     module: {
@@ -34,6 +40,20 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     "css-loader"
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env']
+                    }
+                }
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2|png|ico|jpg|jpeg|gif|svg)$/i,
+                loaders: ['file-loader?&name=assets/[ext]/[name].[hash].[ext]']
             }
         ]
     }

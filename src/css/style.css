@@ -1,5 +1,11 @@
-#root{
-    background-color: #ff4500;
-    padding: 10px;
-    color: #fff;
+
+.demo-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.demo{
+    width: 400px;
+    height: 400px;
+    background: url("../images/space_triangle_by_irreversible92.jpg") no-repeat center / contain;
 }
